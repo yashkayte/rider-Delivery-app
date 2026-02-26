@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Row: Restaurant + Amount -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtRestaurant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pizza Hut"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#212121" />
+
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹120"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#6A1B9A" />
+        </LinearLayout>
+
+        <!-- Pickup -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pickup"
+            android:textSize="12sp"
+            android:textColor="#757575"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/txtPickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Andheri West, Mumbai"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:layout_marginTop="2dp" />
+
+        <!-- Drop -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drop"
+            android:textSize="12sp"
+            android:textColor="#757575"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/txtDrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bandra East, Mumbai"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:layout_marginTop="2dp" />
+
+        <!-- Distance Row -->
+        <TextView
+            android:id="@+id/txtDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍 2.3 km"
+            android:textSize="13sp"
+            android:textColor="#757575"
+            android:layout_marginTop="10dp" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAccept"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:text="Accept"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#6A1B9A"
+                app:cornerRadius="12dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReject"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:text="Reject"
+                android:textColor="#6A1B9A"
+                app:cornerRadius="12dp"
+                app:strokeColor="#6A1B9A"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@android:color/transparent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
