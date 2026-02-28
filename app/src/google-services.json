@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "194457508337",
+    "project_id": "khana-rider",
+    "storage_bucket": "khana-rider.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194457508337:android:99de3bd32da78907144c50",
+        "android_client_info": {
+          "package_name": "com.example.kk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyz3eKVjxWXSorUgbZqRx3fLh-zVe4mzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

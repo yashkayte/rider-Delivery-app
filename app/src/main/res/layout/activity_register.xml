@@ -12,35 +12,34 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- Logo -->
         <ImageView
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Khana Rider"
+            android:text="Create Account"
             android:textStyle="bold"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:textColor="#212121"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login to continue"
+            android:text="Register to start delivering"
             android:textSize="14sp"
             android:textColor="#757575"
-            android:layout_marginBottom="22dp"/>
+            android:layout_marginBottom="22dp" />
 
-        <!-- Phone -->
+        <!-- Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:hint="Full Name"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusTopStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
@@ -48,67 +47,18 @@
             app:boxCornerRadiusBottomEnd="14dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhone"
+                android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSendOtpPhone"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Send OTP"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#2E7D32"
-            app:cornerRadius="14dp"/>
-
-        <!-- OTP input -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/otpBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter OTP"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="14dp"
-            app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusBottomStart="14dp"
-            app:boxCornerRadiusBottomEnd="14dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etOtpPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnVerifyOtpPhone"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Verify OTP"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#1565C0"
-            app:cornerRadius="14dp"/>
-
-        <!-- Divider -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OR"
-            android:textColor="#9E9E9E"
-            android:textStyle="bold"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="10dp"/>
 
         <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:layout_marginTop="10dp"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusTopStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
@@ -122,6 +72,7 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,37 +92,49 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnEmailLogin"
+        <!-- Confirm Password -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Login with Email"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#6A1B9A"
-            app:cornerRadius="14dp"/>
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:layout_marginTop="10dp"
+            app:boxBackgroundMode="outline"
+            app:passwordToggleEnabled="true"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Register button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnCreateAccount"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:text="New User? Register"
-            android:textColor="#1565C0"
+            android:text="Create Account"
+            android:textColor="@android:color/white"
             android:layout_marginTop="14dp"
+            android:backgroundTint="#6A1B9A"
+            app:cornerRadius="14dp" />
+
+        <!-- Back to login -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBackToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Back to Login"
+            android:textColor="#1565C0"
+            android:layout_marginTop="12dp"
             app:strokeColor="#1565C0"
             app:strokeWidth="2dp"
             android:backgroundTint="@android:color/transparent"
-            app:cornerRadius="14dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="KYC will be required before first delivery"
-            android:textSize="12sp"
-            android:textColor="#9E9E9E"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="14dp"/>
+            app:cornerRadius="14dp" />
 
     </LinearLayout>
 

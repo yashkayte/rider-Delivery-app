@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- ✅ Required for Firebase / Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,9 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kk">
-        <activity android:name=".activities.KycStatusActivity" />
 
-        <!-- Splash Activity (LAUNCHER) -->
+        <activity
+            android:name=".activities.UploadDocumentsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.KycStatusActivity"
+            android:exported="false" />
+
+        <!-- ✅ Splash Activity (LAUNCHER) -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
@@ -28,6 +38,11 @@
         <!-- Dashboard Activity -->
         <activity
             android:name=".activities.RiderDashboardActivity"
+            android:exported="false" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
 
     </application>

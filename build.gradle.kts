@@ -1,4 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// kk/build.gradle.kts (Project level)
 plugins {
     alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.google.services) apply false
+    // ✅ Do NOT add kotlin plugin here (Android plugin already handles it)
 }

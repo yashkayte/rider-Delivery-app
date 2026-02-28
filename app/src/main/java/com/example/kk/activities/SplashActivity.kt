@@ -14,12 +14,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-
-            // OPEN LOGIN PAGE (NOT DASHBOARD)
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
-
-        }, 2000)
+        }, 1500)
     }
 }
