@@ -1,78 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#F8F9FA"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
-        <!-- Header Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp">
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:gravity="center_horizontal">
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
 
                 <ImageView
-                    android:id="@+id/imgRider"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    android:background="#EDE7F6"
-                    android:padding="18dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:contentDescription="Profile"/>
 
-                <TextView
-                    android:id="@+id/txtRiderName"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yash Kayte"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="#212121" />
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
 
-                <TextView
-                    android:id="@+id/txtRiderPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+91 98765 43210"
-                    android:textSize="14sp"
-                    android:textColor="#757575"
-                    android:layout_marginTop="4dp" />
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rider Name"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="#212121" />
 
-                <TextView
-                    android:id="@+id/txtRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="⭐ 4.8  •  245 Deliveries"
-                    android:textSize="14sp"
-                    android:textColor="#6A1B9A"
-                    android:layout_marginTop="8dp" />
+                    <TextView
+                        android:id="@+id/txtPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+91xxxxxxxxxx"
+                        android:textSize="13sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
 
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Vehicle Details -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,104 +76,82 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vehicle Details"
-                    android:textSize="16sp"
+                    android:text="Account"
                     android:textStyle="bold"
+                    android:textSize="15sp"
                     android:textColor="#212121"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="12dp" />
 
-                <TextView
-                    android:id="@+id/txtVehicle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/txtEditProfile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bike: Honda Shine"
-                    android:textSize="14sp"
-                    android:textColor="#424242" />
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
 
-                <TextView
-                    android:id="@+id/txtVehicleNumber"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Edit Profile"
+                        android:textSize="14sp"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="18sp"
+                        android:textColor="#9E9E9E" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="6dp"
+                    android:background="#E0E0E0" />
+
+                <LinearLayout
+                    android:id="@+id/txtBankUpi"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Number: MH 01 AB 1234"
-                    android:textSize="14sp"
-                    android:textColor="#424242"
-                    android:layout_marginTop="6dp" />
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bank / UPI Details"
+                        android:textSize="14sp"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="18sp"
+                        android:textColor="#9E9E9E" />
+                </LinearLayout>
 
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Options -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnEditProfile"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="Edit Profile"
-                    android:textColor="#212121"
-                    app:icon="@android:drawable/ic_menu_edit"
-                    app:iconTint="#6A1B9A"
-                    app:iconPadding="12dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDocuments"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="Documents"
-                    android:textColor="#212121"
-                    app:icon="@android:drawable/ic_menu_upload"
-                    app:iconTint="#6A1B9A"
-                    app:iconPadding="12dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSupport"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="Help  Support"
-                    android:textColor="#212121"
-                    app:icon="@android:drawable/ic_menu_help"
-                    app:iconTint="#6A1B9A"
-                    app:iconPadding="12dp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Logout -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Logout"
             android:textColor="@android:color/white"
-            android:backgroundTint="#6A1B9A"
-            android:layout_marginTop="18dp"
-            app:cornerRadius="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Khana Anywhere • Rider App"
-            android:textColor="#9E9E9E"
-            android:textSize="12sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="14dp" />
+            android:backgroundTint="#D32F2F"
+            app:cornerRadius="14dp" />
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -1,80 +1,49 @@
-package com.example.kk.activities
+package com.example.kk.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kk.R
+import com.example.kk.models.Order
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
 
-class OrderAdapter(private val orderList: List<Order>) :
-    RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
+class OrdersAdapter(
+    private val items: List<Order>,
+    private val onAccept: (Order) -> Unit
+) : RecyclerView.Adapter<OrdersAdapter.VH>() {
 
-    class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val restaurant: TextView =
-            itemView.findViewById(R.id.txtRestaurant)
-
-        val pickup: TextView =
-            itemView.findViewById(R.id.txtPickup)
-
-        val drop: TextView =
-            itemView.findViewById(R.id.txtDrop)
-
-        val distance: TextView =
-            itemView.findViewById(R.id.txtDistance)
-
-        val amount: TextView =
-            itemView.findViewById(R.id.txtAmount)
-
-        val acceptBtn: MaterialButton =
-            itemView.findViewById(R.id.btnAccept)
-
-        val rejectBtn: MaterialButton =
-            itemView.findViewById(R.id.btnReject)
+    class VH(v: View) : RecyclerView.ViewHolder(v) {
+        val txtOrderId: TextView = v.findViewById(R.id.txtOrderId)
+        val chipStatus: Chip = v.findViewById(R.id.chipStatus)
+        val txtPickup: TextView = v.findViewById(R.id.txtPickup)
+        val txtDrop: TextView = v.findViewById(R.id.txtDrop)
+        val txtMeta: TextView = v.findViewById(R.id.txtMeta)
+        val txtEarning: TextView = v.findViewById(R.id.txtEarning)
+        val btnAccept: MaterialButton = v.findViewById(R.id.btnAccept)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_order, parent, false)
-
-        return OrderViewHolder(view)
+            .inflate(R.layout.item_order_card, parent, false)
+        return VH(view)
     }
 
-    override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val o = items[position]
+        holder.txtOrderId.text = "Order #${o.orderId}"
+        holder.chipStatus.text = o.status
 
-        val order = orderList[position]
+        holder.txtPickup.text = o.pickup
+        holder.txtDrop.text = o.drop
 
-        holder.restaurant.text = order.restaurant
-        holder.pickup.text = order.pickup
-        holder.drop.text = order.drop
-        holder.distance.text = "📍 ${order.distance}"
-        holder.amount.text = order.amount
+        holder.txtMeta.text = "Distance: ${o.distanceKm} km  •  ${o.paymentType}"
+        holder.txtEarning.text = "₹${o.earning}"
 
-        holder.acceptBtn.setOnClickListener {
-
-            Toast.makeText(
-                holder.itemView.context,
-                "Order Accepted: ${order.restaurant}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-        holder.rejectBtn.setOnClickListener {
-
-            Toast.makeText(
-                holder.itemView.context,
-                "Order Rejected",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        holder.btnAccept.setOnClickListener { onAccept(o) }
     }
 
-    override fun getItemCount(): Int {
-
-        return orderList.size
-    }
+    override fun getItemCount(): Int = items.size
 }

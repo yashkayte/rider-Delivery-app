@@ -12,15 +12,14 @@ class KycStatusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kyc_status)
 
-        val btnUpload = findViewById<MaterialButton>(R.id.btnUploadDocs)
-        val btnSkip = findViewById<MaterialButton>(R.id.btnSkipKyc)
-
-        btnUpload.setOnClickListener {
+        findViewById<MaterialButton>(R.id.btnUploadDocs).setOnClickListener {
             startActivity(Intent(this, UploadDocumentsActivity::class.java))
         }
 
-        btnSkip.setOnClickListener {
-            startActivity(Intent(this, RiderDashboardActivity::class.java))
+        findViewById<MaterialButton>(R.id.btnSkipKyc).setOnClickListener {
+            val i = Intent(this, RiderDashboardActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
             finish()
         }
     }

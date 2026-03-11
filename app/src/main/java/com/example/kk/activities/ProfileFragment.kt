@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.kk.R
+import com.example.kk.utils.SessionManager
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
@@ -16,35 +17,32 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
+    ): View {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val btnEdit = view.findViewById<MaterialButton>(R.id.btnEditProfile)
-        val btnDocs = view.findViewById<MaterialButton>(R.id.btnDocuments)
-        val btnSupport = view.findViewById<MaterialButton>(R.id.btnSupport)
-        val btnLogout = view.findViewById<MaterialButton>(R.id.btnLogout)
-
-        btnEdit.setOnClickListener {
-            Toast.makeText(requireContext(), "Edit Profile (coming soon)", Toast.LENGTH_SHORT).show()
-        }
-
-        btnDocs.setOnClickListener {
-            Toast.makeText(requireContext(), "Documents (coming soon)", Toast.LENGTH_SHORT).show()
-        }
-
-        btnSupport.setOnClickListener {
-            Toast.makeText(requireContext(), "Support (coming soon)", Toast.LENGTH_SHORT).show()
-        }
-
-        btnLogout.setOnClickListener {
-            // Back to Login
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+        val editProfile = view.findViewById<View>(R.id.txtEditProfile)
+        editProfile.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
             startActivity(intent)
-            requireActivity().finish()
         }
+
+        val bankUpi = view.findViewById<View>(R.id.txtBankUpi)
+        bankUpi.setOnClickListener {
+            val intent = Intent(requireContext(), BankUpiActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnLogout = view.findViewById<MaterialButton>(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            SessionManager(requireContext()).setLoggedIn(false)
+
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+        return view
     }
 }

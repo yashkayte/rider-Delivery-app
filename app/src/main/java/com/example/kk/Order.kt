@@ -1,6 +1,5 @@
+package com.example.kk.models
 
-
-package com.example.kk.activities
 data class Order(
     val orderId: String,
     val pickup: String,
@@ -10,6 +9,5 @@ data class Order(
     val distanceKm: Double,
     val earning: Int,
     val paymentType: String,
-    val status: String = "NEW"
+    val status: String
 )
-
