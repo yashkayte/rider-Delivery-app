@@ -28,6 +28,10 @@
         <activity android:name=".activities.OrderDetailsActivity" android:exported="false"/>
         <activity android:name=".activities.EditProfileActivity" android:exported="false"/>
         <activity android:name=".activities.BankUpiActivity" android:exported="false"/>
+        <activity android:name=".activities.WithdrawActivity" android:exported="false"/>
+        <activity android:name=".activities.SupportActivity" android:exported="false"/>
+        <activity android:name=".activities.WalletActivity" android:exported="false"/>
+        <activity android:name=".activities.HistoryActivity" android:exported="false"/>
 
     </application>
 </manifest>

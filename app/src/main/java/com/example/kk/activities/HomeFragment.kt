@@ -1,5 +1,6 @@
 package com.example.kk.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.kk.R
+import com.example.kk.models.Order
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -33,6 +35,19 @@ class HomeFragment : Fragment() {
         val btnHistory = view.findViewById<MaterialButton>(R.id.btnHistory)
         val btnStart = view.findViewById<MaterialButton>(R.id.btnStartDelivery)
 
+        // Dummy active order data
+        val activeOrder = Order(
+            orderId = "KH1024",
+            pickup = "Pizza Hut, Andheri West",
+            drop = "Bandra East, Mumbai",
+            customerName = "Rahul Sharma",
+            customerPhone = "+919876543210",
+            distanceKm = 4.2,
+            earning = 75,
+            paymentType = "COD",
+            status = "ACTIVE"
+        )
+
         fun applyStatus(isOnline: Boolean) {
             if (isOnline) {
                 txtStatus.text = "🟢 ONLINE"
@@ -52,12 +67,29 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), if (isChecked) "You are Online" else "You are Offline", Toast.LENGTH_SHORT).show()
         }
 
-        btnSupport.setOnClickListener { Toast.makeText(requireContext(), "Support (demo)", Toast.LENGTH_SHORT).show() }
-        btnWallet.setOnClickListener { Toast.makeText(requireContext(), "Wallet (demo)", Toast.LENGTH_SHORT).show() }
-        btnHistory.setOnClickListener { Toast.makeText(requireContext(), "History (demo)", Toast.LENGTH_SHORT).show() }
+        btnSupport.setOnClickListener {
+            startActivity(Intent(requireContext(), SupportActivity::class.java))
+        }
+        
+        btnWallet.setOnClickListener {
+            startActivity(Intent(requireContext(), WalletActivity::class.java))
+        }
+        
+        btnHistory.setOnClickListener {
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
+        }
 
         btnStart.setOnClickListener {
-            Toast.makeText(requireContext(), "Starting delivery (demo)", Toast.LENGTH_SHORT).show()
+            val i = Intent(requireContext(), OrderDetailsActivity::class.java)
+            i.putExtra("orderId", activeOrder.orderId)
+            i.putExtra("pickup", activeOrder.pickup)
+            i.putExtra("drop", activeOrder.drop)
+            i.putExtra("customerName", activeOrder.customerName)
+            i.putExtra("customerPhone", activeOrder.customerPhone)
+            i.putExtra("distanceKm", activeOrder.distanceKm)
+            i.putExtra("earning", activeOrder.earning)
+            i.putExtra("paymentType", activeOrder.paymentType)
+            startActivity(i)
         }
     }
 }

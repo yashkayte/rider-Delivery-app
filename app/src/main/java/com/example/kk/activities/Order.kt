@@ -1,15 +1,3 @@
-
-
-package com.example.kk.activities
-data class Order(
-    val orderId: String,
-    val pickup: String,
-    val drop: String,
-    val customerName: String,
-    val customerPhone: String,
-    val distanceKm: Double,
-    val earning: Int,
-    val paymentType: String,
-    val status: String = "NEW"
-)
-
+// This file is removed to avoid conflict with com.example.kk.models.Order
+// package com.example.kk.activities
+// data class Order(...)
