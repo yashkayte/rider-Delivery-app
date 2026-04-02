@@ -3,113 +3,159 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="6dp"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="3dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#F0F0F0">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="14dp">
+        android:padding="16dp">
 
-        <LinearLayout
+        <!-- Top Header with ID and Earning -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtOrderId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Order #KH1024"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="#212121" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NEW"
-                app:chipCornerRadius="14dp"
-                app:chipBackgroundColor="#E8F5E9"
-                android:textColor="#2E7D32" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pickup"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="#757575"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/txtPickup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pizza Hut, Andheri West"
-            android:textSize="14sp"
-            android:textColor="#212121"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drop"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="#757575"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/txtDrop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bandra East, Mumbai"
-            android:textSize="14sp"
-            android:textColor="#212121"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            android:id="@+id/txtMeta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Distance: 4.2 km • COD"
-            android:textSize="12sp"
-            android:textColor="#757575"
-            android:layout_marginTop="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="14dp">
+                android:text="#AUR1001"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtEarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="₹65.00"
+                android:textColor="@color/purple_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Available"
+            android:textColor="@color/success_green"
+            app:chipBackgroundColor="#E8F5E9"
+            app:chipCornerRadius="8dp"
+            app:chipMinHeight="24dp"
+            app:chipStrokeWidth="0dp"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider" />
+
+        <!-- Locations -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@android:drawable/radiobutton_on_background"
+                    app:tint="@color/purple_primary" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:background="#D1D1D1" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@android:drawable/ic_menu_mylocation"
+                    app:tint="@color/error_red" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Prozone Mall, Aurangabad"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txtDrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="CIDCO N-2, Aurangabad"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider" />
+
+        <!-- Footer Info and Action -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMeta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="₹75"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#6A1B9A" />
+                android:text="4.2 km • Online Payment"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAccept"
                 android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:text="Accept"
-                android:textColor="@android:color/white"
-                android:backgroundTint="#2E7D32"
-                app:cornerRadius="14dp" />
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="Accept Order"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@color/purple_primary" />
         </LinearLayout>
 
     </LinearLayout>

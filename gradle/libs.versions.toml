@@ -12,6 +12,11 @@ retrofit = "2.9.0"
 
 firebaseBom = "33.5.1"
 
+# Room Database
+roomRuntime = "2.6.1"
+roomCompiler = "2.6.1"
+roomKtx = "2.6.1"
+
 junit = "4.13.2"
 androidxJunit = "1.1.5"
 espressoCore = "3.5.1"
@@ -33,6 +38,11 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 firebase-storage = { module = "com.google.firebase:firebase-storage" }
+
+# Room Database
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 
 # Testing
 junit = { module = "junit:junit", version.ref = "junit" }

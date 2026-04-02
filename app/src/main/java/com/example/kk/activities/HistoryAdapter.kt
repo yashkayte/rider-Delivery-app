@@ -30,8 +30,8 @@ class HistoryAdapter(private val orders: List<Order>) :
         val order = orders[position]
         holder.txtOrderId.text = "Order #${order.orderId}"
         holder.txtStatus.text = order.status.uppercase()
-        holder.txtPickup.text = "📍 Pickup: ${order.pickup}"
-        holder.txtDrop.text = "🏁 Drop: ${order.drop}"
+        holder.txtPickup.text = "📍 Pickup: ${order.pickupLocation?.address ?: "N/A"}"
+        holder.txtDrop.text = "🏁 Drop: ${order.dropLocation?.address ?: "N/A"}"
         holder.txtEarning.text = "₹${order.earning}"
         
         // Using a dummy date for now as it's not in the model

@@ -36,8 +36,8 @@ class OrdersAdapter(
         holder.txtOrderId.text = "Order #${o.orderId}"
         holder.chipStatus.text = o.status
 
-        holder.txtPickup.text = o.pickup
-        holder.txtDrop.text = o.drop
+        holder.txtPickup.text = o.pickupLocation?.address ?: "No Address"
+        holder.txtDrop.text = o.dropLocation?.address ?: "No Address"
 
         holder.txtMeta.text = "Distance: ${o.distanceKm} km  •  ${o.paymentType}"
         holder.txtEarning.text = "₹${o.earning}"

@@ -3,5 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_primary">#6A1B9A</color>
+    <color name="purple_500">#6A1B9A</color>
+    <color name="purple_700">#4A148C</color>
+    <color name="purple_200">#E1BEE7</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
 
+    <!-- Modern UI Colors -->
+    <color name="bg_grey">#F8F9FD</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_grey">#757575</color>
+    <color name="success_green">#2E7D32</color>
+    <color name="error_red">#D32F2F</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="divider">#EEEEEE</color>
 </resources>

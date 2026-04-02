@@ -3,200 +3,97 @@ package com.example.kk.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kk.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import java.util.concurrent.TimeUnit
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
-    private var verificationId: String? = null
-    private var isDemoOtpMode = false
-
-    private lateinit var etPhone: TextInputEditText
-    private lateinit var etOtpPhone: TextInputEditText
-    private lateinit var btnSendOtpPhone: MaterialButton
-    private lateinit var btnVerifyOtpPhone: MaterialButton
+    private lateinit var db: FirebaseFirestore
 
     private lateinit var etEmail: TextInputEditText
     private lateinit var etPassword: TextInputEditText
     private lateinit var btnEmailLogin: MaterialButton
     private lateinit var btnRegister: MaterialButton
 
-    private lateinit var otpBox: View
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-
-        etPhone = findViewById(R.id.etPhone)
-        etOtpPhone = findViewById(R.id.etOtpPhone)
-        btnSendOtpPhone = findViewById(R.id.btnSendOtpPhone)
-        btnVerifyOtpPhone = findViewById(R.id.btnVerifyOtpPhone)
+        db = FirebaseFirestore.getInstance()
 
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnEmailLogin = findViewById(R.id.btnEmailLogin)
         btnRegister = findViewById(R.id.btnRegister)
 
-        otpBox = findViewById(R.id.otpBox)
-        otpBox.visibility = View.GONE
-
-        btnSendOtpPhone.setOnClickListener {
-            val phone = etPhone.text?.toString()?.trim().orEmpty()
-
-            if (phone.isEmpty()) {
-                toast("Enter phone number")
-                return@setOnClickListener
-            }
-
-            if (!phone.startsWith("+")) {
-                toast("Use country code, example: +919999999999")
-                return@setOnClickListener
-            }
-
-            if (phone.length < 10) {
-                toast("Enter valid phone number")
-                return@setOnClickListener
-            }
-
-            otpBox.visibility = View.VISIBLE
-            sendOtp(phone)
-        }
-
-        btnVerifyOtpPhone.setOnClickListener {
-            val otp = etOtpPhone.text?.toString()?.trim().orEmpty()
-
-            if (otp.length != 6) {
-                toast("Enter valid 6 digit OTP")
-                return@setOnClickListener
-            }
-
-            if (isDemoOtpMode) {
-                if (otp == "123456") {
-                    auth.signInAnonymously()
-                        .addOnSuccessListener { loginSuccess() }
-                        .addOnFailureListener { e ->
-                            toast("Demo login failed: ${e.message}")
-                        }
-                } else {
-                    toast("Wrong OTP. Demo OTP is 123456")
-                }
-                return@setOnClickListener
-            }
-
-            val verId = verificationId
-            if (verId.isNullOrEmpty()) {
-                toast("Please send OTP first")
-                return@setOnClickListener
-            }
-
-            val credential = PhoneAuthProvider.getCredential(verId, otp)
-            signInWithCredential(credential)
-        }
-
         btnEmailLogin.setOnClickListener {
-            val email = etEmail.text?.toString()?.trim().orEmpty()
-            val pass = etPassword.text?.toString()?.trim().orEmpty()
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                toast("Enter valid email")
-                return@setOnClickListener
-            }
-
-            if (pass.length < 6) {
-                toast("Password must be at least 6 characters")
-                return@setOnClickListener
-            }
-
-            auth.signInWithEmailAndPassword(email, pass)
-                .addOnSuccessListener { loginSuccess() }
-                .addOnFailureListener { e ->
-                    toast("Email login failed: ${e.message}")
-                }
+            loginUser()
         }
 
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        if (auth.currentUser != null) {
+            checkUserStatusAndNavigate(auth.currentUser?.uid!!)
+        }
     }
 
-    private fun sendOtp(phone: String) {
-        btnSendOtpPhone.isEnabled = false
-        toast("Sending OTP...")
+    private fun loginUser() {
+        val email = etEmail.text?.toString()?.trim() ?: ""
+        val password = etPassword.text?.toString()?.trim() ?: ""
 
-        val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber(phone)
-            .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(this)
-            .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.error = "Invalid email"
+            return
+        }
 
-                override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                    val code = credential.smsCode
-                    if (!code.isNullOrEmpty()) {
-                        etOtpPhone.setText(code)
-                    }
-                    signInWithCredential(credential)
-                }
+        if (password.isEmpty()) {
+            etPassword.error = "Enter password"
+            return
+        }
 
-                override fun onVerificationFailed(e: FirebaseException) {
-                    btnSendOtpPhone.isEnabled = true
-                    isDemoOtpMode = true
-                    verificationId = "DEMO"
-                    toast("OTP failed, demo mode enabled. Use OTP: 123456")
-                }
+        btnEmailLogin.isEnabled = false
+        Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show()
 
-                override fun onCodeSent(
-                    verId: String,
-                    token: PhoneAuthProvider.ForceResendingToken
-                ) {
-                    verificationId = verId
-                    isDemoOtpMode = false
-                    btnSendOtpPhone.isEnabled = true
-                    toast("OTP Sent")
-                }
-            })
-            .build()
-
-        PhoneAuthProvider.verifyPhoneNumber(options)
-    }
-
-    private fun signInWithCredential(credential: PhoneAuthCredential) {
-        btnVerifyOtpPhone.isEnabled = false
-
-        auth.signInWithCredential(credential)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                btnVerifyOtpPhone.isEnabled = true
-
                 if (task.isSuccessful) {
-                    loginSuccess()
+                    checkUserStatusAndNavigate(auth.currentUser?.uid!!)
                 } else {
-                    toast("Login failed: ${task.exception?.message}")
+                    btnEmailLogin.isEnabled = true
+                    Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    private fun loginSuccess() {
-        toast("Login Success")
-        val i = Intent(this, KycStatusActivity::class.java)
-        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(i)
-        finish()
-    }
-
-    private fun toast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    private fun checkUserStatusAndNavigate(uid: String) {
+        db.collection("riders").document(uid).get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val kycStatus = document.getString("kycStatus") ?: "pending"
+                    if (kycStatus == "approved") {
+                        startActivity(Intent(this, RiderDashboardActivity::class.java))
+                    } else {
+                        startActivity(Intent(this, KycStatusActivity::class.java))
+                    }
+                    finish()
+                } else {
+                    // If no firestore record exists, go to register or dashboard
+                    startActivity(Intent(this, RiderDashboardActivity::class.java))
+                    finish()
+                }
+            }
+            .addOnFailureListener {
+                startActivity(Intent(this, RiderDashboardActivity::class.java))
+                finish()
+            }
     }
 }

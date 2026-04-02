@@ -42,19 +42,20 @@
 
     <LinearLayout
         android:id="@+id/layoutEmpty"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="gone"
+        android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@android:drawable/ic_menu_search"
             app:tint="#BDBDBD" />
 
@@ -63,15 +64,29 @@
             android:layout_height="wrap_content"
             android:text="No new orders found"
             android:textColor="#9E9E9E"
-            android:layout_marginTop="12dp"
-            android:textSize="16sp" />
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Checking for orders..."
+            android:text="Wait for new orders or use the button below to add demo orders for Aurangabad."
             android:textColor="#BDBDBD"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/btnGenerateDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate Demo Orders"
+            android:layout_marginTop="24dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
